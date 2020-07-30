@@ -1,0 +1,38 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Les Abbeilles: Espace Administrateur.
+{% endblock %}
+
+{% block monTitre %}
+	{% if isModification %}
+		On modifie
+		{{beekeeper.name}}?
+	{% else %}
+		On a attiré un nouvel appiculteur?!
+	{% endif %}
+{% endblock %}
+
+
+{% block body %}
+	<div class="container my-5">
+		{{form_start(form)}}
+		<div class="row">
+			<div class="col-6">
+				<img src="{{asset('images/appiculteur/' ~ beekeeper.image)}}" alt="{{beekeeper.name}}" style="width:40%" class="my-3">
+				<div>{{form_row(form.imageFile)}}</div>
+				<div>{{form_row(form.name)}}</div>
+			</div>
+			<div class="col-6">
+				<div>
+					<small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas votre adresse email.</small>
+				</div>
+				{{form_widget(form)}}
+				<div class="d-flex">
+					<input type="submit" value="Valider" class="btn btn-primary col-6">
+					<a href="{{path('beekeeper_main_page_admin')}}" class="btn btn-warning col-6">Retour</a>
+				</div>
+			</div>
+		</div>
+		{{form_end(form)}}
+	</div>
+{% endblock %}

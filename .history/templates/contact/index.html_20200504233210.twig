@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!
+{% endblock %}
+
+{% block body %}
+	<!-- /Formulaire de contact  avec ancre-->
+	<section class=" m-auto bg-warning p-5 text-dark">
+		<div class="col-11 mx-auto" style="width: 800px">
+			<h2 class="text-center">Contactez-nous</h2>
+			{{form_start(contactForm)}}
+			{{form_widget(contactForm)}}
+			<small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas votre adresse email.</small>
+			{{form_end(contactForm)}}
+		</div>
+	</section>
+{% endblock %}

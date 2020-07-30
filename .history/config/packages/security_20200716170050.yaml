@@ -1,0 +1,51 @@
+security:
+  # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+  encoders:
+    App\Entity\User:
+      algorithm: auto
+  providers:
+    in_memory: { memory: null }
+    in_database:
+      entity:
+        class: App\Entity\User
+        property: email
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      anonymous: lazy
+      provider: in_database
+
+      form_login:
+        login_path: login
+        check_path: login
+        # Paramètre pour se connecter sur le site:
+        username_parameter: _email
+        # Sécuriser le formulaire contre les attaques CSRF:
+        csrf_token_generator: security.csrf.token_manager
+        # Page où redidiriger l'utilisateur après s'être correctement connecté:
+        default_target_path: my_profile
+
+      logout:
+        # Nom de la route pour se déconnecter
+        path: logout
+        # Nom de la route pour la redirection:
+        target: home
+
+      remember_me:
+        secret: '%kernel.secret%'
+        lifetime: 604800 # 1 semaine en secondes
+        # Cookie valide sur tout le site:
+        path: /
+
+      # activate different ways to authenticate
+      # https://symfony.com/doc/current/security.html#firewalls-authentication
+      # https://symfony.com/doc/current/security/impersonating_user.html
+      # switch_user: true
+
+  # Easy way to control access for large sections of your site
+  # Note: Only the *first* access control that matches will be used
+  access_control:
+    - { path: ^/admin, roles: ROLE_ADMIN }
+      # - { path: ^/profile, roles: ROLE_USER }

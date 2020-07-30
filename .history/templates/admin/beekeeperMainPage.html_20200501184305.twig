@@ -1,0 +1,49 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Les Abbeilles: gerez vos appiculteurs.
+{% endblock %}
+
+{% block monTitre %}Gestion des appiculteurs:
+{% endblock %}
+
+
+{% block body %}
+	<div
+		class="container">
+		{# Dashboard for Beekeepers #}
+		<h3 class="text-center my-5">LES APPICULTEURS:</h3>
+		<a href="{{path('addBeekeeper')}}" class="d-block btn btn-success my-3">
+
+			<i class="fas fa-plus"></i>
+			Ajouter un appiculteur</a>
+		<table class="table table-hover text-center" id="table for beekeeper">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Appiculteur</th>
+					<th scope="col">Region</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for beekeeper in beekeepers %}
+					<tr>
+						<th scope="row">{{beekeeper.id}}</th>
+						<td>{{beekeeper.name}}</td>
+						<td>{{beekeeper.region}}</td>
+						<td>
+							<div class="row no-gutters">
+								<a href="#" class="col btn btn-primary">Modifier</a>
+								<form action="#" method="POST" class="col" onsubmit="return confirm('Confirmer la suppression ? Attention cela supprimera tous les produits de cet appiculteur')">
+									<input type="hidden" name="_method" value="delete">
+									<input type="hidden" name="_token" value="{{csrf_token('SUP' ~ beekeeper.id)}}">
+									<input type="submit" class="col btn btn-danger" value="Supprimer">
+								</form>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

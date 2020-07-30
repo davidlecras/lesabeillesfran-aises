@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les abeilles: nos produits!
+{% endblock %}
+{% block monTitre %}Nos produits
+{% endblock %}
+
+{% block body %}
+	<article class="container">
+
+		<h3 class="text-center">En achetant nos miels, vous contribuez personnellement à augmenter le nombre d’abeilles en France</h3>
+
+		<p class="text-center">LesAbeilles.com s’engage à acheter leurs miels à des appiculteurs français à un prix supérieur au prix du marché. En échange ceux-ci s’engagent à investir dans leurs fermes pour accroître le nombre de leurs colonies d’abeilles et de ruches.
+			<br>
+			Nos miels ne sont ni mélangés, ni importés. Ils sont 100% purs et naturels, certifiés par le label Origine France Garantie. Chaque miel est le reflet de la flore de la région où il a été récolté. Déguster notre miel c’est faire un voyage gustatif à travers les terroirs mellifères et floraux de France.
+		</p>
+		<div class="text-center my-4" id="noproduitsVertueux">
+			<div>
+				<img src="{{asset('Logos/unnamed.jpg')}}" alt="logo agriculture raisonnée" id="logoAR">
+				<p>pour tous nos miels non BIO</p>
+			</div>
+			<div>
+				<img src="{{asset('Logos/ofg.png')}}" alt="logo origine France garantie" id="logoOFG">
+				<p>pour tous nos miels</p>
+			</div>
+			<div>
+				<img src="{{asset('Logos/bio.png')}}" alt="logo agriculture biologique" id="logAB">
+				<p>pour notre gamme BIO</p>
+			</div>
+		</div>
+	</article>
+	{# Product List display start #}
+	<section class=" my-5 container productslist">
+		<div class="row">
+			{% for product in products %}
+				<div class="col-lg-4 col-md-6 mb-4 text-center ">
+					<div class="card h-100">
+						<a href="{{path('show_product',{'id': product.id})}}"><img class="card-img-top img-fluid mx-auto" src="{{asset('images/miel/' ~ product.image)}}" alt="{{product.name}}" style="height: 50vh"></a>
+						<div class="card-body">
+							<h4 class="card-title">
+								<a href="{{path('show_product',{'id': product.id})}}">{{product.name}}
+									{{product.weightInGr}}gr</a>
+							</h4>
+							<h5>Prix:
+								{{product.price| format_currency('EUR') }}</h5>
+							<p class="card-text text-justify">{{ newProduct.description|length >200 ? newProduct.description|slice(0, 200) ~ ' ...' : newProduct.description  }}</p>
+						</div>
+						<div class="card-footer d-flex justify-content-center">
+							<a href="#" class="btn shadow btn-colorSecondary">Ajouter au panier</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		{# display pagination #}
+		<div class="navigation d-flex justify-content-center">
+			{{ knp_pagination_render(products) }}
+		</div>
+	</section>
+	{# Product List display end #}
+
+{% endblock %}

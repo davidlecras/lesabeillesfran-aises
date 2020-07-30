@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les abeilles françaises: Votre panier!
+{% endblock %}
+{% block monTitre %}Ton Panier
+{% endblock %}
+{% block body %}
+	<section class="container">
+		{% if items| length >0 %}
+			<table class="table text-center">
+				<thead>
+					<tr>
+						<th>Produit</th>
+						<th>Prix</th>
+						<th>Quantité</th>
+						<th>Total</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody class="text-center">
+					{% for item in items %}
+						<tr>
+							<td>{{item.product.name}}</td>
+							<td>{{item.product.price| format_currency('EUR')}}</td>
+							<td>
+								<a href="{{path('cart_add', {'id': item.product.id})}}" class="btn btn-colorPrimary">
+									<i class="fas fa-plus"></i>
+								</a>
+								{{item.quantity}}
+								{% if item.quantity >1 %}
+									<a href="{{path('cart_subtract', {'id': item.product.id})}}" class="btn shadow btn-colorSecondary">
+										<i class="fas fa-minus"></i>
+									</a>
+								{% else %}
+									<a href="{{path('cart_remove', {'id': item.product.id})}}" class="btn shadow btn-danger">
+										<i class="fas fa-trash"></i>
+									</a>
+								{% endif %}
+							</td>
+							<td>{{(item.product.price * item.quantity)| format_currency('EUR')}}</td>
+							{% if item.quantity >1 %}
+								<td>
+									<a href="{{path('cart_remove', {'id': item.product.id})}}" class="btn btn-danger shadow">
+										<i class="fas fa-trash"></i>
+									</a>
+								</td>
+							{% endif %}
+						</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="3">Total:</td>
+						<td>{{total| format_currency('EUR')}}</td>
+						<td></td>
+					</tr>
+				</tfoot>
+			</table>
+			<hr>
+			<div class="container my-4 d-flex justify-content-between">
+				<a href="{{path('showAllProducts')}}" class="btn btn-lg shadow btn-colorSecondary">
+					<i class="fas fa-long-arrow-alt-left"></i>
+					Poursuivre mes achats</a>
+				<a href="{{path('showAllProducts')}}" class="btn btn-lg shadow btn-colorPrimary">Valider
+					<i class="fas fa-arrow-right"></i>
+				</a>
+			</div>
+		{% else %}
+			<div class=" text-center justify-content-center my-5">
+				<p>Oh non, ton panier est vide.<br>
+					Vite, remplis-le!</p>
+				<a href="{{path('showAllProducts')}}" class="btn btn-colorSecondary">Voir les miels</a>
+			</div>
+		{% endif %}
+	</section>
+{% endblock %}

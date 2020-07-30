@@ -1,0 +1,12 @@
+vich_uploader:
+  db_driver: orm
+
+  mappings:
+    beekeeper_image:
+      uri_prefix: /images/appiculteur
+      upload_destination: '%kernel.project_dir%/public/images/appiculteur'
+      namer: Vich\UploaderBundle\Naming\UniqidNamer
+    product_image:
+      uri_prefix: /images/miel
+      upload_destination: '%kernel.project_dir%/public/images/miel'
+      namer: Vich\UploaderBundle\Naming\UniqidNamer

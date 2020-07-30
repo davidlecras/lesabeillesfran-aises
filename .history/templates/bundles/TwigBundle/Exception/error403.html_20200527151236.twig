@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+{% block title %}Page non trouvée
+{% endblock %}
+{% block monTitre %}Oups! Page non trouvée
+{% endblock %}
+{% block body %}
+	<section>
+		<p>La page que vous cherchez n'a pas été trouvée</p>
+		<p>Code de l'erreur:
+			{{status_code}}</p>
+	</section>
+{% endblock %}

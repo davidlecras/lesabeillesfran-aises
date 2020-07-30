@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<link rel="stylesheet" href="{{asset("css/style.css")}}"/>
+		<link href="https://fonts.googleapis.com/css?family=Sniglet&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/aa5cf69e35.js" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<h1>
+			<i class="fas fa-envelope"></i>
+			Nouvel E-mail</h1>
+
+		<p>Envoyé par:
+			{{contact.nom}}</p>
+		<p>Email:
+			{{contact.email}}</p>
+		<p>Objet de l'email:
+			{{contact.objet}}</p>
+		<p>Contenu:
+			{{contact.message}}</p>
+	</body>
+</html>

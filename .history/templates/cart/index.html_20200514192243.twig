@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Abeilles: Votre panier!
+{% endblock %}
+{% block monTitre %}Ton Panier
+{% endblock %}
+{% block body %}
+	<section class="container">
+		{% if items| length >0 %}
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Produit</th>
+						<th>Prix</th>
+						<th>Quantité</th>
+						<th>Total</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in items %}
+						<tr>
+							<td>{{item.product.name}}</td>
+							<td>{{item.product.price| format_currency('EUR')}}</td>
+							<td>
+								<a href="{{path('cart_add', {'id': item.product.id})}}">
+									<i class="fas fa-plus-square"></i>
+								</a>
+								{{item.quantity}}
+								<a href="{{path('cart_subtract', {'id': item.product.id})}}">
+									<i class="fas fa-minus-square"></i>
+								</a>
+							</td>
+							<td>{{(item.product.price * item.quantity)| format_currency('EUR')}}</td>
+							<td>
+								<a href="{{path('cart_remove', {'id': item.product.id})}}" class="btn btn-danger">
+									<i class="fas fa-trash"></i>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="3">Total:</td>
+						<td>{{total| format_currency('EUR')}}</td>
+						<td></td>
+					</tr>
+				</tfoot>
+			</table>
+		{% else %}
+			<div class=" text-center justify-content-center my-5">
+				<p>Oh non, ton panier est vide.<br>
+					Vite, remplis-le!</p>
+				<a href="{{path('showAllProducts')}}" class="btn btn-colorSecondary">Voir les miels</a>
+			</div>
+		{% endif %}
+	</section>
+{% endblock %}

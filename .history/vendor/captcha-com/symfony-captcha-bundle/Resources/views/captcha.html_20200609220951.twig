@@ -1,0 +1,11 @@
+{% block simple_captcha_widget %}
+	{{ captcha_html | raw }}
+	{{ form_widget(form, { 'id': user_input_id, 'value': '' }) }}
+{% endblock %}
+
+{% block captcha_widget %}
+	{% spaceless %}
+		{{ captcha_html | raw }}
+		{{ form_widget(form, { 'id': user_input_id, 'value': '' }) }}
+	{% endspaceless %}
+{% endblock %}

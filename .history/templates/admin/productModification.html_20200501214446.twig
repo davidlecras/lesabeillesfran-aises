@@ -1,0 +1,36 @@
+{% extends 'admin/index.html.twig' %}
+
+
+{% block title %}Les Abbeilles: Espace Administrateur.
+{% endblock %}
+
+{% block monTitre %}
+	{% if isModification %}
+		On modifie le
+		{{product.name}}?
+	{% else %}
+		Quoi de neuf dans le miel?
+	{% endif %}
+{% endblock %}
+
+
+{% block body %}
+	<div class="container my-5">
+		{{form_start(formP)}}
+		<div class="row">
+			<div class="col-6">
+				<img src="{{asset('images/miel/' ~ product.image)}}" alt="{{product.name}}" style="width:50%" class="my-3">
+				<div>{{form_row(formP.imageFile)}}</div>
+				<div>{{form_row(formP.name)}}</div>
+			</div>
+			<div class="col-6">
+				{{form_widget(formP)}}
+				<div class="d-flex">
+					<input type="submit" value="Valider" class="btn btn-primary col-6">
+					<a href="{{path('products_main_page_admin')}}" class="btn btn-warning col-6">Retour</a>
+				</div>
+			</div>
+		</div>
+		{{form_end(formP)}}
+	</div>
+{% endblock %}

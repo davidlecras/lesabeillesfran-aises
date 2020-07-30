@@ -1,0 +1,39 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Les abeilles françaises: Espace Administrateur.
+{% endblock %}
+
+{% block monTitre %}
+	{% if isModification %}
+		On modifie
+		{{beekeeper.name}}?
+	{% else %}
+		On a attiré un nouvel appiculteur?!
+	{% endif %}
+{% endblock %}
+
+
+{% block body %}
+	<div class="container my-5">
+		{{form_start(form)}}
+		<div class="row">
+			<div class="col-6">
+				<img src="{{asset('images/appiculteur/' ~ beekeeper.image)}}" alt="{{beekeeper.name}}" style="width:40%" class="my-3">
+				<div>{{form_row(form.imageFile)}}</div>
+				<div>{{form_row(form.name)}}</div>
+			</div>
+			<div class="col-6">
+				<div>
+					{{form_row(form.region)}}
+					<small class="form-text text-muted">Format: Ville, Département.</small>
+				</div>
+				<div class="my-4">{{form_row(form.description)}}</div>
+				<div class="d-flex">
+					<input type="submit" value="Valider" class="btn btn-colorPrimary col-6" id="validateBeekeeper">
+					<a href="{{path('beekeeper_main_page_admin')}}" class="btn btn-colorSecondary col-6">Retour</a>
+				</div>
+			</div>
+		</div>
+		{{form_end(form)}}
+	</div>
+{% endblock %}

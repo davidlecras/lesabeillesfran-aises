@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}lesAbeilles: comment nous contacter
+{% endblock %}
+
+{% block monTitre %}Bzz Bzz Bzz, envoyez-nous un bourdon voyageur!
+{% endblock %}
+
+{% block body %}
+	<!-- /Formulaire de contact  avec ancre-->
+	<section class=" m-auto bg-warning p-5 text-dark" id="ctcByEmail">
+		<div class="col-11 mx-auto" style="width: 800px">
+			<h2 class="text-center">Nous contacter par e-mail</h2>
+			{{form_start(contactForm)}}
+			{{form_widget(contactForm)}}
+			<small id="emailHelp" class="form-text text-muted text-center">Les abeilles vous informent qu'elles ne partagerons pas votre adresse email.</small>
+			{{form_end(contactForm)}}
+		</div>
+	</section>
+	<section id="ctcByMail">
+		<h2 class="text-center">Nous contacter par abeille timbrée</h2>
+		<p class="text-center my-3">
+			29 Bis Avenue de Ceinture
+			<br>
+			95880, Enghien-les-Bains, France</p>
+	</section>
+{% endblock %}

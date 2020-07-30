@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+{% block title %}Erreur!
+{% endblock %}
+{% block monTitre %}Oups! Une erreur s'est produite.
+{% endblock %}
+{% block body %}
+	<section>
+		<p>Vous vous êtes égaré... Reviens petite abeille</p>
+		<p>Code de l'erreur:
+			{{status_code}}</p>
+	</section>
+{% endblock %}

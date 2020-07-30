@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Abbeilles: Espace Administrateur.
+{% endblock %}
+
+{% block monTitre %}Bienvenue
+	{# {{app.user.username}} #}
+	dans ton espace administrateur
+{% endblock %}
+{% block menu %}
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="{{path('home')}}">Retour au site principal</a>
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('main_page_admin')}}">Accueil Administrateur
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('beekeeper_main_page_admin')}}">Gerer les appiculteurs</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('products_main_page_admin')}}">Gerer les miels</a>
+
+				</li>
+			</ul>
+			<div class="my-1 my-lg-0">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Deconnexion</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	{% endblock %}
+	{% block body %}
+		<div class="container">
+			<section id="explenations">
+				<div class="jumbotron">
+					<h1 class="display-4 text-center">Comment fonctionne ton espace administrateur?</h1>
+					<p class="lead">Nous t'expliquons toutes les démarches pour que cela se passe au mieux</p>
+					<hr class="my-4">
+					<p>Tu veux ajouter, modifier ou supprimer des éléments du site? On t'explique tout!</p>
+					<a class="btn btn-primary btn-lg" href="#" role="button">Clique ici!</a>
+				</div>
+			</section>
+		</div>
+	{% endblock %}

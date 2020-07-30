@@ -1,0 +1,8 @@
+{% extends "base.html.twig" %}
+{% block title %}Les abeille: Bienvenue!
+{% endblock %}
+
+{% block monTitre %}Bonjour
+	{{app.user.name|capitalize}}
+	{{app.user.surname|capitalize}}
+{% endblock %}

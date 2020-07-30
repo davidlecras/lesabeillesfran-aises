@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les abeilles françaises: Inscription!
+{% endblock %}
+
+{% block monTitre %}Inscrivez-vous dans notre ruche!
+{% endblock %}
+
+{% block body %}
+	<div class="container my-4">
+		{{ form_start(form)}}
+		{{form_row(form.name)}}
+		{{form_row(form.surname)}}
+		{{form_row(form.email)}}
+		<div class="row container justify-content-between">
+			<input type="submit" value="S'inscrire" class=" col-6 btn btn-colorPrimary shadow">
+
+			<a class="col-6 d-flex justify-content-center btn btn-colorSecondary shadow" href="{{path('login')}}">Déjà membre?</a>
+
+		</div>
+		{{form_end(form)}}
+	</div>
+
+{% endblock %}

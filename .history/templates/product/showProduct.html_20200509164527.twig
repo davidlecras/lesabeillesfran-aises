@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les abeilles:{{products.name}}!
+{% endblock %}
+{% block monTitre %}
+	{{products.name}}
+{% endblock %}
+
+{% block body %}
+	<section
+		class=" container productslist my-5 col-lg-9 text-center">
+		{# Product section start #}
+		<div class="card mt-4">
+			<div class="d-flex justify-content-center my-4">
+				<img class="card-img-top img-fluid" src="{{asset('images/miel/' ~ products.image)}}" alt="image pot de {{products.name}}" style="width:40%">
+			</div>
+			<div class="card-body">
+				<a href="{{path('show_product',{'id': products.id})}}">
+					<h3 class="card-title">{{products.name}},
+						{{products.weightInGr}}
+						gr</h3>
+				</a>
+				<h4>{{products.price| format_currency('EUR')}}</h4>
+				<p class="card-text">{{products.description}}</p>
+				<hr>
+				<p class="card-text">
+					Produit par:
+					{{product.beekeeper.name}}
+					à
+					{{product.beekeeper.region}}</p>
+				<hr>
+				{% if product.stock ==0 %}
+					{% else %}
+						<a href="{{path('cart_add', {'id': product.id})}}" class="btn btn-colorPrimary shadow col">Ajouter au panier</a>
+
+				{% endif %}
+			</div>
+		</div>
+		{# Product section finish #}
+
+		{# Comments part begin #}
+		<div class="card card-outline-secondary my-4 text-left">
+			<div class="card-header text-center">
+				Avis sur ce miel ({{product.coments.count}}
+				avis)
+			</div>
+			<div class="card-body">
+				{% for comment in product.coments %}
+					<p>{{comment.containt}}</p>
+					<small class="text-muted">Écrit par
+						{{comment.user.name}}
+						{{comment.user.surname}}
+						{{comment.publishedAt| ago}}</small>
+					<hr>
+				{% endfor %}
+			</div>
+			{# Comments part finish #}
+
+			{# leaveComments start #}
+			<div class="row">
+				<div class="col-md-12">
+					<form method="POST" action="{{path('new_comment',{'product':product.id})}}">
+						<div class="form-group container">
+							<label for="exampleFormControlTextarea1" class="ml-3">Laisser un commentaire:</label>
+							<textarea name="comment" required class="form-control" id="exampleformcontroltextarea1" rows="3"></textarea>
+						</div>
+						<button type="submit" class="btn btn-colorPrimary ml-5 mb-4">Ajouter mon commentaire</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		{# leaveComments finish #}
+
+	</section>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+{% block title %}Les abeilles françaises: Bienvenue!
+{% endblock %}
+
+{% block monTitre %}Bonjour
+	{{app.user.name|capitalize|escape}}
+
+	{{app.user.surname|capitalize|escape}}
+
+{% endblock %}
